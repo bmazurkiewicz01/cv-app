@@ -12,7 +12,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   cards,
 }) => {
   return (
-    <div className="w-72 bg-primary h-full max-h-screen flex flex-col justify-between items-center">
+    <div className="w-80 bg-primary h-full max-h-screen flex flex-col justify-between items-center">
       <div className="py-10">
         <h1 className="text-focus text-2xl">CV App</h1>
       </div>
