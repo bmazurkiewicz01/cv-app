@@ -4,16 +4,18 @@ interface SidebarProps {
   activeCard: Card;
   setActiveCard: (card: Card) => void;
   cards: Card[];
+  toPDF: () => void;
 }
 
 const Sidebar: React.FC<SidebarProps> = ({
   activeCard,
   setActiveCard,
   cards,
+  toPDF,
 }) => {
   return (
-    <div className="w-80 bg-primary h-full max-h-screen flex flex-col justify-between items-center">
-      <div className="py-10">
+    <div className="w-80 min-h-screen bg-primary h-full">
+      <div className="py-10 text-center">
         <h1 className="text-focus text-2xl">CV App</h1>
       </div>
       <div className="w-full h-full">
@@ -51,6 +53,7 @@ const Sidebar: React.FC<SidebarProps> = ({
             </div>
           </div>
         ))}
+        <button onClick={() => toPDF()}>Generate PDF</button>
       </div>
     </div>
   );

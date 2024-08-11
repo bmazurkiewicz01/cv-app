@@ -201,7 +201,7 @@ const CVForm: React.FC<CVFormProps> = ({
     }
   };
 
-  return <div className="py-8 px-12">{renderForm()}</div>;
+  return <div className="py-8 px-12 overflow-y-auto">{renderForm()}</div>;
 };
 
 export default CVForm;

@@ -11,22 +11,26 @@ import TaskIcon from "@mui/icons-material/Task";
 import DownloadIcon from "@mui/icons-material/Download";
 import Content from "./components/Content";
 import { Card, FormData } from "./types/types";
+import { usePDF } from "react-to-pdf";
 
 const App = () => {
   const [activeCard, setActiveCard] = useState<Card>(cards[0]);
   const [formData, setFormData] = useState<FormData>(initialFormData);
+  const { toPDF, targetRef } = usePDF({ filename: "cv.pdf" });
 
   return (
-    <main className="h-screen w-screen max-w-[180rem] font-sans flex justify-center items-center">
+    <main className="h-screen w-full max-w-[180rem] font-sans flex flex-row justify-center overflow-hidden">
       <Sidebar
         activeCard={activeCard}
         setActiveCard={setActiveCard}
         cards={cards}
+        toPDF={toPDF}
       />
       <Content
         activeCard={activeCard}
         formData={formData}
         setFormData={setFormData}
+        targetRef={targetRef}
       />
     </main>
   );
