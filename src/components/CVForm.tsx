@@ -1,5 +1,7 @@
 import { FormData, Card } from "../types/types";
 import PersonalIcon from "../assets/personal.svg?react";
+import ExperienceIcon from "../assets/experience.svg?react";
+import SummaryIcon from "../assets/summary.svg?react";
 
 interface CVFormProps {
   activeCard: Card;
@@ -15,6 +17,7 @@ interface InputFieldProps {
   onChange: (section: string, keyValue: string, value: any) => void;
   section: string;
   keyValue: string;
+  height?: string;
   className?: string;
 }
 
@@ -51,6 +54,7 @@ const TextAreaField: React.FC<InputFieldProps> = ({
   onChange,
   section,
   keyValue,
+  height = "200px",
   className = "",
 }) => {
   return (
@@ -59,7 +63,7 @@ const TextAreaField: React.FC<InputFieldProps> = ({
       <textarea
         id={id}
         name={name}
-        className="border outline-0 border-tertiary-150 focus:border-tertiary-600 focus-visible:border-tertiary-600 active:border-tertiary-600 hover:border-tertiary-600 p-4 rounded-md w-full text-lg"
+        className={`min-h-[${height}] border outline-0 border-tertiary-150 focus:border-tertiary-600 focus-visible:border-tertiary-600 active:border-tertiary-600 hover:border-tertiary-600 p-4 rounded-md w-full text-lg`}
         onChange={(e) => onChange(section, keyValue, e.target.value)}
         value={value}
       />
@@ -154,6 +158,7 @@ const CVForm: React.FC<CVFormProps> = ({
                 onChange={handleChange}
                 section="personalInfo"
                 keyValue="address"
+                height="auto"
                 className="col-span-2"
               />
               <InputField
@@ -194,6 +199,36 @@ const CVForm: React.FC<CVFormProps> = ({
                 keyValue="phone"
               />
             </div>
+          </>
+        );
+      case "experience":
+        return (
+          <>
+            <UserHelper
+              title="Your Work Experience"
+              description="Add your work experience in reverse chronological order. You can add more than one experience."
+              icon={<ExperienceIcon className={"w-[110px] h-[110px]"} />}
+            />
+          </>
+        );
+      case "summary":
+        return (
+          <>
+            <UserHelper
+              title="Write a Summary"
+              description="Write a short summary about yourself. This will be the first thing recruiters will read."
+              icon={<SummaryIcon className={"w-[110px] h-[110px]"} />}
+            />
+            <TextAreaField
+              label="Summary"
+              id="summary"
+              name="summary"
+              value={formData.summary}
+              onChange={handleChange}
+              section="summary"
+              keyValue="summary"
+              className="col-span-2"
+            />
           </>
         );
       default:
