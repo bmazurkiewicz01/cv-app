@@ -782,6 +782,32 @@ const CVForm: React.FC<CVFormProps> = ({
             className="col-span-2"
           />
         );
+      case "preview":
+        return (
+          <>
+            <UserHelper
+              title="Preview your CV"
+              description="Check how your CV looks like. You can print it or save it as a PDF."
+              icon={<PersonalIcon className={"w-[110px] h-[110px]"} />}
+            />
+            <h2 className="text-xl pb-2 font-semibold">
+              Your CV, Perfected and Ready to Download
+            </h2>
+            <p className="pb-4 text-tertiary-900">
+              Get a final look at your CV before downloading it. Ensure all
+              details are accurate and well-presented, showcasing your skills
+              and experience in the best light. When you're ready, click below
+              to download your CV in your preferred format, and take the next
+              step towards your career goals.
+            </p>
+            <button
+              className="w-full bg-[#e44747] hover:bg-[#df2626] text-white py-4 rounded-md shadow-xl"
+              onClick={() => window.print()}
+            >
+              Download or print your CV
+            </button>
+          </>
+        );
       default:
         return <div>In work</div>;
     }
