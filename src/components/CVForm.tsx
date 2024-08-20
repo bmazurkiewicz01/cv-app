@@ -269,13 +269,20 @@ const CVForm: React.FC<CVFormProps> = ({
         section === "education" ||
         section === "languages"
       ) {
-        newData[section][index][key] = value;
+        if (index === undefined) {
+          return prevData;
+        }
+        (newData[section as keyof FormData] as any[])[index][key] = value;
       } else if (section === "skills" || section === "hobbies") {
+        if (index === undefined) {
+          return prevData;
+        }
         newData[section][index] = value;
       } else if (section === "cvClause" || section === "summary") {
-        newData[key] = value;
+        newData[key as keyof typeof newData] = value;
       } else {
-        newData[section as keyof FormData][key] = value;
+        (newData[section as keyof FormData] as { [key: string]: any })[key] =
+          value;
       }
       return newData;
     });
@@ -306,17 +313,17 @@ const CVForm: React.FC<CVFormProps> = ({
   };
 
   const deleteSkill = (index: number) => {
-    formData.skills.splice(parseInt(index), 1);
+    formData.skills.splice(index, 1);
     setFormData({ ...formData });
   };
 
   const deleteHobby = (index: number) => {
-    formData.hobbies.splice(parseInt(index), 1);
+    formData.hobbies.splice(index, 1);
     setFormData({ ...formData });
   };
 
   const deleteLanguage = (index: number) => {
-    formData.languages.splice(parseInt(index), 1);
+    formData.languages.splice(index, 1);
     setFormData({ ...formData });
   };
 
