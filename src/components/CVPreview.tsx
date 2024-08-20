@@ -3,7 +3,6 @@ import { FormData } from "../types/types";
 
 interface CVPreviewProps {
   formData: FormData;
-  targetRef: React.RefObject<HTMLDivElement>;
 }
 
 const PersonalInfo: React.FC<{ formData: FormData }> = ({ formData }) => (
@@ -89,11 +88,10 @@ const ExperienceItem: React.FC<{
   </div>
 );
 
-const CVPreview: React.FC<CVPreviewProps> = ({ formData, targetRef }) => (
+const CVPreview: React.FC<CVPreviewProps> = ({ formData }) => (
   <div
     className="w-full h-full pt-8 pl-8 pr-8 bg-box font-arimo overflow-x-hidden"
     id="cv-preview"
-    ref={targetRef}
   >
     <div className="w-full h-full shadow-xl flex flex-col">
       <div className="w-full bg-cv-header p-6">

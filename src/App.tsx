@@ -11,26 +11,22 @@ import TaskIcon from "@mui/icons-material/Task";
 import DownloadIcon from "@mui/icons-material/Download";
 import Content from "./components/Content";
 import { Card, FormData } from "./types/types";
-import { usePDF } from "react-to-pdf";
 
 const App = () => {
   const [activeCard, setActiveCard] = useState<Card>(cards[0]);
   const [formData, setFormData] = useState<FormData>(initialFormData);
-  const { toPDF, targetRef } = usePDF({ filename: "cv.pdf" });
 
   return (
-    <main className="h-screen w-full max-w-[180rem] font-sans flex flex-row justify-center overflow-hidden">
+    <main className="h-screen w-full max-w-[180rem] font-sans flex flex-row justify-center overflow-hidden print:hidden">
       <Sidebar
         activeCard={activeCard}
         setActiveCard={setActiveCard}
         cards={cards}
-        toPDF={toPDF}
       />
       <Content
         activeCard={activeCard}
         formData={formData}
         setFormData={setFormData}
-        targetRef={targetRef}
       />
     </main>
   );
@@ -103,7 +99,7 @@ const initialFormData: FormData = {
       startDate: "2024-02",
       endDate: "present",
       description:
-        "As a Software Engineer at Facebook, I played a key role in enhancing the platform's performance and scalability. I collaborated with cross-functional teams to develop and implement new features, ensuring the delivery of high-quality software solutions. My work primarily focused on optimizing the news feed algorithm, leading to a 15% increase in user engagement. Additionally, I mentored junior developers and participated in code reviews, contributing to the overall improvement of the engineering team's productivity and code quality. I also spearheaded a project that integrated AI-driven content recommendations, which resulted in a 10% increase in ad revenue.",
+        "As a Software Engineer at Facebook, I played a key role in enhancing the platform's performance and scalability.",
     },
     {
       role: "Junior Software Engineer",
@@ -112,17 +108,8 @@ const initialFormData: FormData = {
       startDate: "2024-01",
       endDate: "2024-02",
       description:
-        "During my tenure as a Junior Software Engineer at Google, I worked on various projects within the Google Search team. My responsibilities included developing and optimizing search algorithms to improve query processing speed and accuracy. I contributed to the design and implementation of a new ranking system that improved search result relevance by 8%. Additionally, I assisted in the integration of machine learning models that personalized search results based on user behavior. My role also involved writing comprehensive documentation for new features and collaborating with senior engineers to resolve complex technical issues. This experience provided me with invaluable insights into large-scale software development and high-performance computing.",
+        "During my tenure as a Junior Software Engineer at Google, I worked on various projects within the Google Search team.",
     },
-    // {
-    //   role: "Junior Software Engineer",
-    //   company: "Google",
-    //   city: "New York",
-    //   startDate: "2024-01",
-    //   endDate: "2024-02",
-    //   description:
-    //     "During my tenure as a Junior Software Engineer at Google, I worked on various projects within the Google Search team. My responsibilities included developing and optimizing search algorithms to improve query processing speed and accuracy. I contributed to the design and implementation of a new ranking system that improved search result relevance by 8%. Additionally, I assisted in the integration of machine learning models that personalized search results based on user behavior. My role also involved writing comprehensive documentation for new features and collaborating with senior engineers to resolve complex technical issues. This experience provided me with invaluable insights into large-scale software development and high-performance computing.",
-    // },
   ],
 
   education: [
